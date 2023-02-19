@@ -1,0 +1,70 @@
+{% extends 'base.html.twig' %}
+{% set Pagecout ="" %}
+{% block title %}List des films{% endblock %}
+
+
+{% block body %}
+
+    <div class="row">
+        <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+            <div class="page-header">
+                <div class="page-breadcrumb">
+                    <nav aria-label="breadcrumb">
+                        <ol class="breadcrumb">
+                            <li class="breadcrumb-item"><a href="{{ path('app_index') }}" class="breadcrumb-link">Tableau de bord</a></li>
+                            <li class="breadcrumb-item active" aria-current="page">Liste des films</li>
+                        </ol>
+                    </nav>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    {% for message in app.flashes('success') %}
+        <div class="alert alert-success">
+            {{ message }}
+        </div>
+    {% endfor %}
+
+    <div class="row">
+        <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+            <div class="card">
+                <div class="card-body">
+                    <div class="table-responsive">
+                        <table id="people_table" class="table table-hover">
+                            <thead class="bg-light">
+                            <tr class="border-0">
+                                <th>Nom</th>
+                                <th>Hauteur</th>
+                                <th>Poids</th>
+                                <th>Genre</th>
+                                <th>Planete</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            {% for people in peoples %}
+                                <tr>
+                                    <td> {{ people.name }}</td>
+                                    <td>{{ people.height }}</td>
+                                    <td>{{ people.mass }}</td>
+                                    <td>{{ people.gender }}</td>
+                                    <td>{{ people.homeworld }}</td>
+                                    <td>
+                                    </td>
+                                </tr>
+                            {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+{% endblock %}
+
+{% block javascripts %}
+
+    {{ include('block/blockjs.datatable.html.twig', { 'table_id': 'people_table', 'targets': 4 }) }}
+
+{% endblock %}

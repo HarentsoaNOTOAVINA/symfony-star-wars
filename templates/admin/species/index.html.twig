@@ -1,0 +1,72 @@
+{% extends 'base.html.twig' %}
+{% set Pagecout ="" %}
+{% block title %}List des especes{% endblock %}
+
+
+{% block body %}
+
+    <div class="row">
+        <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+            <div class="page-header">
+                <div class="page-breadcrumb">
+                    <nav aria-label="breadcrumb">
+                        <ol class="breadcrumb">
+                            <li class="breadcrumb-item"><a href="{{ path('app_index') }}" class="breadcrumb-link">Tableau de bord</a></li>
+                            <li class="breadcrumb-item active" aria-current="page">Liste des especes</li>
+                        </ol>
+                    </nav>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    {% for message in app.flashes('success') %}
+        <div class="alert alert-success">
+            {{ message }}
+        </div>
+    {% endfor %}
+
+    <div class="row">
+        <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+            <div class="card">
+                <div class="card-body">
+                    <div class="table-responsive">
+                        <table id="specie_table" class="table table-hover">
+                            <thead class="bg-light">
+                            <tr class="border-0">
+                                <th>Nom</th>
+                                <th>Classification</th>
+                                <th>Designation</th>
+                                <th>Hauteur max</th>
+                                <th>Vie max</th>
+                                <th>Langue</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            {% for specie in species %}
+                                <tr>
+                                    <td> {{ specie.name }}</td>
+                                    <td>{{ specie.classification }}</td>
+                                    <td>{{ specie.designation }}</td>
+                                    <td>{{ specie.average_height }}</td>
+                                    <td>{{ specie.average_lifespan }}</td>
+                                    <td>{{ specie.language }}</td>
+                                    <td>
+                                    </td>
+                                </tr>
+                            {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+{% endblock %}
+
+{% block javascripts %}
+
+    {{ include('block/blockjs.datatable.html.twig', { 'table_id': 'specie_table', 'targets': 7 }) }}
+
+{% endblock %}
