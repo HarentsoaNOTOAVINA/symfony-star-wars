@@ -2,7 +2,9 @@
 
 namespace App\Controller\Admin;
 
+use JetBrains\PhpStorm\NoReturn;
 use Symfony\Component\DependencyInjection\ParameterBag\ParameterBagInterface;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -10,24 +12,18 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 class IndexController extends AbstractController
 {
-    /**
-     * @var ParameterBagInterface
-     */
-    private $parameterBag;
 
-    public function __construct(ParameterBagInterface $parameterBag)
-    {
-        $this->parameterBag = $parameterBag;
-    }
+    public function __construct(
+       private ParameterBagInterface $parameterBag)
+    {}
 
-    /**
-     * @Route("/admin", name="admin_index")
-     * @return Response
-     */
-    public function index():Response
+    #[Route('/', name: 'app_index')]
+    public function index(Request $request):Response
     {
+
         return $this->render('admin/index.html.twig', [
             'immo_base_url' => $this->parameterBag->get('immo_url') . 'admin'
         ]);
     }
+
 }

@@ -1,11 +1,8 @@
 <?php
 
-
 namespace App\Controller\Admin;
 
-
-use App\Services\Star\FilmServices;
-
+use App\Services\Star\PeopleServices;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -15,11 +12,11 @@ use Symfony\Contracts\HttpClient\Exception\RedirectionExceptionInterface;
 use Symfony\Contracts\HttpClient\Exception\ServerExceptionInterface;
 use Symfony\Contracts\HttpClient\Exception\TransportExceptionInterface;
 
-class FilmController extends AbstractController
+class PeopleController extends AbstractController
 {
 
     public function __construct(
-        private readonly FilmServices $service
+        private readonly PeopleServices $service
     ) {}
 
     /**
@@ -30,14 +27,15 @@ class FilmController extends AbstractController
      * @throws ServerExceptionInterface
      * @throws TransportExceptionInterface
      */
-    #[Route( '/films', name: 'app_film')]
+    #[Route( '/personnages', name: 'app_people')]
     public function index(): Response
     {
-        $allFilm = $this->service->getFilm();
+        $peoples = $this->service->getPeople();
 
-        return $this->render('admin/film/index.html.twig', [
-            'films' => $allFilm['results']
+        return $this->render('admin/people/index.html.twig', [
+            'peoples' => $peoples['results']
         ]);
     }
+
 
 }

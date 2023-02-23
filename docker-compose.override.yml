@@ -1,14 +1,18 @@
-version: '3'
+version: "3"
 
 services:
-###> doctrine/doctrine-bundle ###
-  database:
-    ports:
-      - "5432"
-###< doctrine/doctrine-bundle ###
 
-###> symfony/mailer ###
-  mailer:
-    image: schickling/mailcatcher
-    ports: ["1025", "1080"]
-###< symfony/mailer ###
+  db:
+    ports:
+      - 3310:3306
+
+  phpmyadmin:
+    ports:
+      - 8082:80
+
+  www:
+    build: build
+    ports:
+      - "82:80"
+    environment:
+      DEBUG: 'true'

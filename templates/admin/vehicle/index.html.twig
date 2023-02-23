@@ -31,7 +31,7 @@
             <div class="card">
                 <div class="card-body">
                     <div class="table-responsive">
-                        <table id="people_table" class="table table-hover">
+                        <table id="peoples_table" class="table table-hover">
                             <thead class="bg-light">
                             <tr class="border-0">
                                 <th>Nom</th>
@@ -65,6 +65,6 @@
 
 {% block javascripts %}
 
-    {{ include('block/blockjs.datatable.html.twig', { 'table_id': 'people_table', 'targets': 4 }) }}
+    {{ include('block/blockjs.datatable.html.twig', { 'table_id': 'peoples_table', 'targets': 4 }) }}
 
 {% endblock %}

@@ -1,8 +1,8 @@
 <?php
 
-namespace App\Utils;
+namespace App\Services\Utils;
 
-interface UtilsInterface
+interface StarWarsInterface
 {
 
     public function getEntityManager();

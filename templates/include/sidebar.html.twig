@@ -5,13 +5,26 @@
 <div class="collapse navbar-collapse" id="navbarNav">
     <ul class="navbar-nav flex-column">
         <li class="nav-item single-menu">
-            <a class="nav-link" href="{{ immo_base_url }}">
-                <i class="fas fa-backward"></i> Retour
+            <a class="nav-link {% if app_film is defined %} active {% endif %}" href="{{ path('app_film') }}">
+                <i class="fa-solid fa-camera-movie"></i> Movies
             </a>
         </li>
+
         <li class="nav-item single-menu">
-            <a class="nav-link {% if excel is defined %} active {% endif %}" href="{{ path('admin_excel_index') }}">
-                <i class="fas fa-file-excel"></i> Fichier excel
+            <a class="nav-link {% if app_people is defined %} active {% endif %}" href="{{ path('app_people') }}">
+                <i class="fa-solid fa-person"></i> Peoples
+            </a>
+        </li>
+
+        <li class="nav-item single-menu">
+            <a class="nav-link {% if app_planet is defined %} active {% endif %}" href="{{ path('app_planet') }}">
+                <i class="fa-solid fa-planet-ringed"></i> Planets
+            </a>
+        </li>
+
+        <li class="nav-item single-menu">
+            <a class="nav-link {% if app_species is defined %} active {% endif %}" href="{{ path('app_species') }}">
+                <i class="fa-regular fa-network-wired"></i> Species
             </a>
         </li>
     </ul>
